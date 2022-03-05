@@ -1,7 +1,7 @@
 import React from "react";
 import { ViewProvider } from "./contexts/ViewContext";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Dashboard from "./pages/Dashboard";
+import MainView from "./pages/MainView";
 
 const App = () => {
   return (
@@ -9,7 +9,7 @@ const App = () => {
       <Router>
         <div className="h-screen w-screen overflow-hidden">
           <Routes>
-            <Route path="/" exact element={<Dashboard />} />
+            <Route path="*" exact element={<MainView />} />
           </Routes>
         </div>
       </Router>
