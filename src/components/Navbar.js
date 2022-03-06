@@ -1,6 +1,7 @@
 import React from "react";
 import {
   BiCategory,
+  BiCog,
   BiImages,
   BiMenu,
   BiServer,
@@ -9,9 +10,11 @@ import {
 import { useView } from "../contexts/ViewContext";
 import NavbarItem from "./NavbarItem";
 import { ReactComponent as QBELogo } from "../svg/qbe.svg";
+import { useAuth } from "../contexts/AuthContext";
 
 const Navbar = () => {
   const { navbar, toggleNavbar } = useView();
+  const { userData } = useAuth();
 
   return (
     <div
@@ -29,7 +32,7 @@ const Navbar = () => {
           <span>
             <QBELogo />
           </span>
-          <p className="text-lg font-semibold">QBE</p>
+          <p className="text-lg font-semibold no-select">QBE</p>
         </div>
         <button
           onClick={toggleNavbar}
@@ -43,16 +46,21 @@ const Navbar = () => {
         <NavbarItem icon={<BiWorld />} title="CubeSats" link={"/cubesats"} />
         <NavbarItem icon={<BiServer />} title="Realtime" link={"/realtime"} />
         <NavbarItem icon={<BiImages />} title="Images" link={"/images"} />
+        <NavbarItem icon={<BiCog />} title="Settings" link={"/settings"} />
         {/* Profile Button */}
-        <div className="w-full mt-auto h-12 rounded-lg flex items-center">
-          <div className="rounded-full bg-gray-400 w-8 h-8 flex-none"></div>
+        <div className="w-full mt-auto rounded-lg flex items-center">
+          <div className="rounded-full bg-accent w-8 h-8 flex-none grid place-items-center font-medium text-white no-select">
+            {userData.displayName[0]}
+          </div>
           <div
             className={`${
               !navbar && "hidden sm:block"
             } no-select ml-3 flex-auto truncate text-sm`}
           >
-            <p className="truncate font-medium text-gray-700">John Doe</p>
-            <p className="-mt-1 truncate text-gray-500">test@test.com</p>
+            <p className="truncate font-medium text-gray-700">
+              {userData.displayName}
+            </p>
+            <p className="-mt-1 truncate text-gray-500">{userData.email}</p>
           </div>
         </div>
       </div>
