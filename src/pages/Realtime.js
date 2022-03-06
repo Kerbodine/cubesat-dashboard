@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import TableItem from "../components/TableItem";
 
 const Realtime = () => {
@@ -52,9 +52,11 @@ const Realtime = () => {
           <p className="w-full truncate">Humidity:</p>
         </div>
         <hr className="h-0.5 bg-gray-200" />
-        {data.map((item) => (
-          <TableItem key={item.id} data={item} />
-        ))}
+        <div className="h-[calc(100vh-210px)] overflow-y-auto space-y-2">
+          {data.map((item) => (
+            <TableItem key={item.id} data={item} />
+          ))}
+        </div>
       </div>
     </div>
   );
