@@ -1,8 +1,7 @@
 import { useState } from "react";
-import { BiCheck, BiInfoCircle } from "react-icons/bi";
+import { BiLoaderAlt, BiInfoCircle } from "react-icons/bi";
 import { Link } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
-import Loader from "../components/Loader";
 
 export default function ForgotPassword() {
   const [email, setEmail] = useState("");
@@ -12,10 +11,6 @@ export default function ForgotPassword() {
   const [message, setMessage] = useState("");
 
   const { resetPassword } = useAuth();
-
-  const updateEmail = (e) => {
-    setEmail(e.target.value);
-  };
 
   const handleSubmit = async () => {
     setError("");
@@ -41,44 +36,51 @@ export default function ForgotPassword() {
   };
 
   return (
-    <div className="grid h-screen w-screen place-items-center bg-white">
-      <div className="border-box w-full max-w-[296px] rounded-2xl border-2 border-gray-200 bg-white p-8">
-        {loading ? (
-          <Loader />
-        ) : (
-          <form onSubmit={handleSubmit} className="">
-            <h1 className="text-2xl font-semibold">Reset password</h1>
-            <input
-              type="email"
-              placeholder="Email address"
-              value={email}
-              onChange={updateEmail}
-              required
-              className="form-input mt-3"
-            />
-            <Link
-              className="mt-1 block w-full text-right text-sm text-gray-500 hover:underline"
-              to="/login"
-            >
-              Back to login page
+    <div className="w-screen h-screen bg-white grid place-items-center">
+      <div className="border-gray-200 p-8 xs:border-2 rounded-2xl">
+        <form className="w-[240px] relative" onSubmit={handleSubmit}>
+          <h1 className="text-xl xs:text-2xl font-semibold mb-4">
+            Reset password
+          </h1>
+          <input
+            type="email"
+            placeholder="Email address"
+            className="focus:outline-none border-2 px-2 py-1 w-full rounded-lg border-gray-200 focus:border-gray-600 text-gray-700"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          {error && (
+            <div className="w-full p-0.5 text-red-400 rounded-lg flex text-sm font-medium gap-1 bg-red-100 border-2 border-red-400 mt-2">
+              <BiInfoCircle className="rotate-180 text-xl flex-none" />
+              <p className="flex-auto truncate">{error}</p>
+            </div>
+          )}
+          {message && (
+            <div className="w-full p-0.5 text-emerald-400 rounded-lg flex text-sm font-medium gap-1 bg-emerald-100 border-2 border-emerald-400 mt-2">
+              <BiInfoCircle className="text-xl flex-none" />
+              <p className="flex-auto truncate">{message}</p>
+            </div>
+          )}
+          <div className="mt-1 flex hover:underline text-sm text-gray-500">
+            <Link to="/login" className="ml-auto">
+              Back to login
             </Link>
-            {error && (
-              <div className="error-alert mt-2">
-                <BiInfoCircle className="rotate-180 text-xl" />
-                <p className="flex-auto truncate">{error}</p>
-              </div>
-            )}
-            {message && (
-              <div className="success-alert mt-2">
-                <BiCheck className="text-xl" />
-                <p className="flex-auto truncate">{message}</p>
-              </div>
-            )}
-            <button type="submit" className="form-button mt-8">
-              Reset password
-            </button>
-          </form>
-        )}
+          </div>
+          <button
+            type="submit"
+            className="mt-4 px-2 py-1 text-sm rounded-lg border-gray-600 border-2 text-gray-700 font-medium hover:bg-gray-600 hover:text-white"
+          >
+            Reset password →
+          </button>
+          {loading && (
+            <div className="absolute inset-0 bg-white grid place-items-center">
+              <span className="animate-spin text-2xl text-gray-500">
+                <BiLoaderAlt />
+              </span>
+            </div>
+          )}
+        </form>
       </div>
     </div>
   );

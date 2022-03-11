@@ -7,6 +7,9 @@ import {
   signOut,
   sendPasswordResetEmail,
   onAuthStateChanged,
+  GoogleAuthProvider,
+  signInWithPopup,
+  getAdditionalUserInfo,
 } from "firebase/auth";
 
 const AuthContext = createContext();
@@ -53,6 +56,19 @@ export function AuthProvider({ children }) {
     return sendPasswordResetEmail(auth, email);
   };
 
+  const provider = new GoogleAuthProvider();
+  const signInWithGoogle = async () => {
+    try {
+      const cred = await signInWithPopup(auth, provider);
+      const { isNewUser } = getAdditionalUserInfo(cred);
+      if (isNewUser) {
+        await createSignupDoc(cred);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setCurrentUser(user);
@@ -74,6 +90,7 @@ export function AuthProvider({ children }) {
     login,
     logout,
     resetPassword,
+    signInWithGoogle,
   };
 
   return (

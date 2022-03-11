@@ -32,7 +32,7 @@ const CubeSats = () => {
   return (
     <div className="w-full h-full p-4 sm:p-8 lg:p-12">
       <h1 className="text-2xl font-semibold mb-4">CubeSats</h1>
-      <div className="w-full space-y-2">
+      <div className="w-full space-y-3">
         {data.map((item) => (
           <CubeSatItem key={item.id} data={item} />
         ))}
