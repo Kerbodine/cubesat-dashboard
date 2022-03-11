@@ -29,9 +29,7 @@ const Dashboard = () => {
         <div className="absolute left-6 top-6 text-sm px-2 py-1 rounded-lg bg-white/70">
           23° N | 77° W <br /> X:24 | Y:56 | Z:173 <br /> CubeSat: 1A
         </div>
-        <div className="object-cover overflow-hidden">
-          <DashboardBg />
-        </div>
+        <DashboardBg className="bg-slate-800" />
       </div>
     </div>
   );
