@@ -8,6 +8,7 @@ import {
 } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
+import ProRoute from "../auth/ProRoute";
 import Loader from "../components/Loader";
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
@@ -58,8 +59,12 @@ const MainView = () => {
               <Routes>
                 <Route path="/" element={<Dashboard />} />
                 <Route path="/cubesats" element={<CubeSats />} />
-                <Route path="/realtime" element={<Realtime />} />
-                <Route path="/images" element={<Images />} />
+                <Route path="/realtime" element={<ProRoute />}>
+                  <Route path="/realtime" element={<Realtime />} />
+                </Route>
+                <Route path="/images" element={<ProRoute />}>
+                  <Route path="/images" element={<Images />} />
+                </Route>
                 <Route path="/settings" element={<Settings />} />
               </Routes>
             </div>

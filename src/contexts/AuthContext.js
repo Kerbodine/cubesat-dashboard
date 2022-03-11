@@ -25,6 +25,7 @@ export function AuthProvider({ children }) {
     const userDoc = {
       displayName: cred.user.displayName,
       email: cred.user.email,
+      premium: false,
       createdAt: new Date(),
     };
     await setDoc(doc(db, "Users", cred.user.uid), userDoc);

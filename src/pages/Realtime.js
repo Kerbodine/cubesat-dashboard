@@ -1,63 +1,31 @@
 import React from "react";
-import TableItem from "../components/TableItem";
+import Table from "../components/Table";
+import { realtimeData } from "../config/data";
 
 const Realtime = () => {
-  const data = [
+  const columns = [
     {
-      id: 1,
-      timeStamp: "01/01/2020 00:00:00",
-      temperature: "23",
-      pressure: "76",
-      humidity: "56",
+      Header: "Time",
+      accessor: "timeStamp",
     },
     {
-      id: 2,
-      timeStamp: "01/01/2020 00:00:00",
-      temperature: "22",
-      pressure: "84",
-      humidity: "58",
+      Header: "Temperature",
+      accessor: "temperature",
     },
     {
-      id: 3,
-      timeStamp: "01/01/2020 00:00:00",
-      temperature: "24",
-      pressure: "112",
-      humidity: "62",
+      Header: "Pressure",
+      accessor: "pressure",
     },
     {
-      id: 4,
-      timeStamp: "01/01/2020 00:00:00",
-      temperature: "25",
-      pressure: "100",
-      humidity: "65",
-    },
-    {
-      id: 5,
-      timeStamp: "01/01/2020 00:00:00",
-      temperature: "24",
-      pressure: "96",
-      humidity: "72",
+      Header: "Humidity",
+      accessor: "humidity",
     },
   ];
 
   return (
     <div className="w-full h-full p-4 sm:p-8 lg:p-12">
       <h1 className="text-2xl font-semibold mb-4">Realtime</h1>
-      <div className="w-full space-y-2">
-        <div className="w-full h-10 flex items-center bg-gray-200 rounded-lg px-2 gap-2 font-medium">
-          <p className="w-36 flex-none">Timestamp:</p>
-          <div className="w-0.5 h-6 bg-gray-300 flex-none"></div>
-          <p className="w-full truncate">Temperature:</p>
-          <p className="w-full truncate">Pressure:</p>
-          <p className="w-full truncate">Humidity:</p>
-        </div>
-        <hr className="h-0.5 bg-gray-200" />
-        <div className="h-[calc(100vh-210px)] overflow-y-auto space-y-2">
-          {data.map((item) => (
-            <TableItem key={item.id} data={item} />
-          ))}
-        </div>
-      </div>
+      <Table tableData={realtimeData} tableColumns={columns} />
     </div>
   );
 };

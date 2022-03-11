@@ -29,10 +29,17 @@ const Navbar = () => {
             !navbar && "hidden sm:flex"
           } flex flex-auto items-center gap-2`}
         >
-          <span>
+          <span className="w-8 h-8">
             <QBELogo />
           </span>
           <p className="text-lg font-semibold no-select">QBE</p>
+          <span
+            className={`text-xs text-white font-semibold tracking-wide px-1 py-0.5 rounded-md ${
+              userData.premium ? "bg-accent" : "bg-gray-500"
+            }`}
+          >
+            {userData.premium ? "PRO" : "FREE"}
+          </span>
         </div>
         <button
           onClick={toggleNavbar}
