@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { ReactComponent as ProIcon } from "../svg/pro.svg";
 
 export default function GetPremium() {
@@ -10,9 +11,12 @@ export default function GetPremium() {
       <p className="text-center flex items-center text-gray-700 leading-5">
         This feature is only for QBE Pro users.
       </p>
-      <button className="mt-4 border-2 px-3 py-2 font-medium border-accent rounded-lg text-accent hover:bg-accent hover:text-white">
+      <Link
+        to="/pricing"
+        className="mt-4 border-2 px-3 py-2 font-medium border-accent rounded-lg text-accent hover:bg-accent hover:text-white transition-colors"
+      >
         Purchase license
-      </button>
+      </Link>
     </div>
   );
 }

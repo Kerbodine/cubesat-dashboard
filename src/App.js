@@ -7,6 +7,7 @@ import Login from "./auth/Login";
 import Signup from "./auth/Signup";
 import PrivateRoute from "./auth/PrivateRoute";
 import ForgotPassword from "./auth/ForgotPassword";
+import Pricing from "./pages/Pricing";
 
 const App = () => {
   return (
@@ -16,12 +17,9 @@ const App = () => {
           <div className="h-screen w-screen overflow-hidden">
             <Routes>
               <Route path="/login" element={<Login />} />
-              <Route path="/signup" exact element={<Signup />} />
-              <Route
-                path="/reset-password"
-                exact
-                element={<ForgotPassword />}
-              />
+              <Route path="/signup" element={<Signup />} />
+              <Route path="/reset-password" element={<ForgotPassword />} />
+              <Route path="/pricing" element={<Pricing />} />
               <Route path="*" element={<PrivateRoute />}>
                 <Route path="*" element={<MainView />} />
               </Route>

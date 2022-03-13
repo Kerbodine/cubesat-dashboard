@@ -6,7 +6,7 @@
 
 @layer base {
   :root {
-    --accent: 0, 122, 255;
+    --accent: 10, 132, 255;
   }
   html {
     font-family: "Inter", sans-serif;
