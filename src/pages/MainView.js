@@ -1,11 +1,11 @@
+import { getFirestore, doc, onSnapshot, query } from "firebase/firestore";
 import {
-  getFirestore,
-  doc,
-  collection,
-  onSnapshot,
-  orderBy,
-  query,
-} from "firebase/firestore";
+  getDatabase,
+  limitToLast,
+  onValue,
+  orderByChild,
+  ref,
+} from "firebase/database";
 import React, { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import ProRoute from "../auth/ProRoute";
@@ -13,6 +13,7 @@ import Loader from "../components/Loader";
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 import { useAuth } from "../contexts/AuthContext";
+import { useData } from "../contexts/DataContext";
 import { app } from "../firebase";
 import CubeSats from "./CubeSats";
 import Dashboard from "./Dashboard";
@@ -23,6 +24,7 @@ import Settings from "./Settings";
 const MainView = () => {
   const [loading, setLoading] = useState(true);
   const { setUserData, currentUser } = useAuth();
+  const { setLatestData } = useData(null);
 
   const db = getFirestore(app);
 
@@ -34,6 +36,43 @@ const MainView = () => {
       (document) => {
         setUserData(document.data());
         setLoading(false);
+      }
+    );
+    return () => {
+      unsubscribe();
+    };
+  }, []);
+
+  // https://stackoverflow.com/questions/33036487/one-liner-to-flatten-nested-object
+  const flattenObject = (obj) => {
+    const flattened = {};
+
+    Object.keys(obj).forEach((key) => {
+      const value = obj[key];
+
+      if (
+        typeof value === "object" &&
+        value !== null &&
+        !Array.isArray(value)
+      ) {
+        Object.assign(flattened, flattenObject(value));
+      } else {
+        flattened[key] = value;
+      }
+    });
+
+    return flattened;
+  };
+
+  const rtdb = getDatabase(); // Real time database
+
+  useEffect(() => {
+    setLoading(true);
+    const unsubscribe = onValue(
+      query(ref(rtdb, "data"), orderByChild("timeStamp"), limitToLast(1)),
+      (snapshot) => {
+        const data = snapshot.val();
+        setLatestData(flattenObject(data));
       }
     );
     return () => {

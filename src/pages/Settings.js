@@ -21,12 +21,12 @@ const Settings = () => {
   return (
     <div className="w-full h-full p-4 sm:p-8 lg:p-12">
       <h1 className="text-2xl font-semibold mb-4">Settings</h1>
-      <div className="flex">
-        <p className="text-gray-700">
+      <div className="flex flex-col sm:flex-row w-full">
+        <p className="text-gray-700 flex-auto whitespace-normal">
           <span className="font-medium">Current Account:</span>{" "}
           {currentUser.email}
         </p>
-        <button className="form-button ml-auto" onClick={signOut}>
+        <button className="form-button ml-auto flex-none" onClick={signOut}>
           Sign Out
         </button>
       </div>

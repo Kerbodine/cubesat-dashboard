@@ -8,24 +8,27 @@ import Signup from "./auth/Signup";
 import PrivateRoute from "./auth/PrivateRoute";
 import ForgotPassword from "./auth/ForgotPassword";
 import Pricing from "./pages/Pricing";
+import { DataProvider } from "./contexts/DataContext";
 
 const App = () => {
   return (
     <AuthProvider>
       <ViewProvider>
-        <Router>
-          <div className="h-screen w-screen overflow-hidden">
-            <Routes>
-              <Route path="/login" element={<Login />} />
-              <Route path="/signup" element={<Signup />} />
-              <Route path="/reset-password" element={<ForgotPassword />} />
-              <Route path="/pricing" element={<Pricing />} />
-              <Route path="*" element={<PrivateRoute />}>
-                <Route path="*" element={<MainView />} />
-              </Route>
-            </Routes>
-          </div>
-        </Router>
+        <DataProvider>
+          <Router>
+            <div className="h-screen w-screen overflow-hidden">
+              <Routes>
+                <Route path="/login" element={<Login />} />
+                <Route path="/signup" element={<Signup />} />
+                <Route path="/reset-password" element={<ForgotPassword />} />
+                <Route path="/pricing" element={<Pricing />} />
+                <Route path="*" element={<PrivateRoute />}>
+                  <Route path="*" element={<MainView />} />
+                </Route>
+              </Routes>
+            </div>
+          </Router>
+        </DataProvider>
       </ViewProvider>
     </AuthProvider>
   );
