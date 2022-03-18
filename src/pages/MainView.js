@@ -26,7 +26,7 @@ import { BiInfoCircle } from "react-icons/bi";
 const MainView = () => {
   const [loading, setLoading] = useState(true);
   const { setUserData, currentUser } = useAuth();
-  const { setLatestData } = useData(null);
+  const { setLatestData, setAllData } = useData(null);
   const { toggleSidebar } = useView();
 
   const db = getFirestore(app);
@@ -76,6 +76,28 @@ const MainView = () => {
       (snapshot) => {
         const data = snapshot.val();
         setLatestData(flattenObject(data));
+      }
+    );
+    return () => {
+      unsubscribe();
+    };
+  }, []);
+
+  const flattenObj = (obj) => {
+    const flattened = [];
+    for (var key in obj) {
+      flattened.push({ ...obj[key] });
+    }
+    return flattened;
+  };
+
+  useEffect(() => {
+    setLoading(true);
+    const unsubscribe = onValue(
+      query(ref(rtdb, "data"), orderByChild("timeStamp"), limitToLast(10)),
+      (snapshot) => {
+        const data = snapshot.val();
+        setAllData(flattenObj(data));
       }
     );
     return () => {

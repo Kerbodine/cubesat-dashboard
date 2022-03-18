@@ -35,7 +35,7 @@ const Table = ({ tableData, tableColumns }) => {
           return (
             <tr
               {...row.getRowProps()}
-              className="border-2 border-gray-200 divide-x-2 divide-gray-200"
+              className="border-2 border-gray-200 divide-x-2 divide-gray-200 text-gray-600"
             >
               {row.cells.map((cell) => {
                 return (

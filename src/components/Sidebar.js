@@ -24,20 +24,20 @@ export default function Sidebar() {
   return (
     <div
       className={`${
-        sidebar ? "w-[240px]" : "w-0 lg:block lg:w-[240px] flex-none"
-      } absolute right-0 h-full border-l border-gray-200 bg-white lg:relative transition-all`}
+        sidebar ? "w-[240px]" : "w-0 lg:w-[240px]"
+      } absolute lg:block flex-none right-0 h-full border-l border-gray-200 bg-white lg:relative transition-all`}
     >
-      <div className={`${!sidebar && "hidden"}`}>
+      <div className={`${!sidebar && "hidden lg:block"}`}>
         <div className="h-[56px] w-full flex items-center border-b border-gray-200 px-4 gap-2">
           <button
             onClick={toggleSidebar}
-            className={`grid h-8 w-8 place-items-center text-xl text-gray-500 sm:hidden`}
+            className={`grid h-8 w-8 place-items-center text-xl text-gray-500 lg:hidden`}
           >
             <BiMenu />
           </button>
           <p className="font-semibold">5-day Forecast</p>
         </div>
-        <div className="space-y-3 p-3 overflow-y-auto h-[calc(100vh-56px)]">
+        <div className="space-y-3 p-3 overflow-y-auto h-[calc(100vh-56px)] w-full">
           {forecast.map((day, index) => (
             <div
               key={index}
