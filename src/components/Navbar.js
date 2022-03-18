@@ -20,7 +20,7 @@ const Navbar = () => {
     <div
       className={`${
         navbar ? "w-[200px]" : "w-[56px] sm:w-[200px]"
-      } absolute h-full border-r border-gray-200 bg-white sm:relative flex-none z-10`}
+      } absolute h-full border-r border-gray-200 bg-white sm:relative flex-none z-10 transition-all`}
     >
       <div className="flex h-[56px] w-full items-center border-b border-gray-200 px-3">
         {/* Logo branding */}

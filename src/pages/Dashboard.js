@@ -9,26 +9,26 @@ const Dashboard = () => {
     <div className="w-full h-full p-4 sm:p-8 lg:p-12">
       <h1 className="text-2xl font-semibold mb-4">Dashboard</h1>
       <div className="w-full h-96 bg-gray-100 rounded-2xl relative overflow-hidden">
-        <div className="absolute justify-center bottom-3 md:bottom-6 lg:bottom-0 lg:right-6 flex flex-col sm:flex-row lg:flex-col h-[300px] sm:h-24 w-full lg:w-[144px] lg:h-full px-3 lg:py-6 lg:px-0 gap-3">
-          <div className="w-full max-w-[144px] h-full bg-white/70 rounded-lg p-3 relative">
+        <div className="absolute justify-center bottom-3 md:bottom-6 lg:bottom-0 lg:right-6 flex flex-col sm:flex-row lg:flex-col h-[300px] sm:h-24 w-full lg:w-[176px] lg:h-full px-3 md:px-6 lg:py-6 lg:px-0 gap-3">
+          <div className="max-w-[176px] w-full h-full bg-white/70 rounded-lg p-3 relative">
             <h3 className="font-semibold -mt-1 text-black/75">Temp:</h3>
             <p className="absolute text-gray-600/75 font-semibold text-3xl bottom-3 right-3">
               {latestData.temperature}
-              <span className="font-sans text-lg">°C</span>
+              <span className="text-lg">°C</span>
             </p>
           </div>
-          <div className="w-full max-w-[144px] h-full bg-white/70 rounded-lg p-3 relative">
+          <div className="max-w-[176px] w-full h-full bg-white/70 rounded-lg p-3 relative">
             <h3 className="font-semibold -mt-1 text-black/75">Pressure:</h3>
             <p className="absolute text-gray-600/75 font-semibold text-3xl bottom-3 right-3">
               {JSON.stringify(Math.round(latestData.pressure) / 10)}
-              <span className="font-sans text-lg">kPa</span>
+              <span className="text-lg">kPa</span>
             </p>
           </div>
-          <div className="w-full max-w-[144px] h-full bg-white/70 rounded-lg p-3 relative">
+          <div className="max-w-[176px] w-full h-full bg-white/70 rounded-lg p-3 relative">
             <h3 className="font-semibold -mt-1 text-black/75">Humidity:</h3>
             <p className="absolute text-gray-600/75 font-semibold text-3xl bottom-3 right-3">
               {JSON.stringify(latestData.humidity)}
-              <span className="font-sans text-lg">%</span>
+              <span className="text-lg">%</span>
             </p>
           </div>
         </div>
@@ -45,7 +45,9 @@ const Dashboard = () => {
           <br /> */}
           <span className="font-semibold">Last updated: </span>
           <br />
-          {latestData.formattedTime && latestData.formattedTime.slice(0, -7)}
+          <span className="font-mono">
+            {latestData.formattedTime && latestData.formattedTime.slice(0, -7)}
+          </span>
         </div>
         <DashboardBg className="bg-slate-800" />
       </div>

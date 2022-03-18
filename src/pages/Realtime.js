@@ -25,7 +25,9 @@ const Realtime = () => {
   return (
     <div className="w-full h-full p-4 sm:p-8 lg:p-12">
       <h1 className="text-2xl font-semibold mb-4">Realtime</h1>
-      <Table tableData={realtimeData} tableColumns={columns} />
+      <div className="w-[calc(100vw-88px)] sm:w-full overflow-y-scroll">
+        <Table tableData={realtimeData} tableColumns={columns} />
+      </div>
     </div>
   );
 };
