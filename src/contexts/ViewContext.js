@@ -12,11 +12,21 @@ export function ViewProvider({ children }) {
   const [sidebar, setSidebar] = useState(false);
 
   const toggleNavbar = () => {
-    setNavbar(!navbar);
+    if (navbar) {
+      setNavbar(false);
+    } else {
+      setNavbar(true);
+      setSidebar(false);
+    }
   };
 
   const toggleSidebar = () => {
-    setSidebar(!sidebar);
+    if (sidebar) {
+      setSidebar(false);
+    } else {
+      setSidebar(true);
+      setNavbar(false);
+    }
   };
 
   const value = {
@@ -26,6 +36,7 @@ export function ViewProvider({ children }) {
     toggleNavbar,
     setNavbar,
     sidebar,
+    setSidebar,
     toggleSidebar,
   };
 

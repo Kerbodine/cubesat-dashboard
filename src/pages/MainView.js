@@ -20,11 +20,14 @@ import Dashboard from "./Dashboard";
 import Images from "./Images";
 import Realtime from "./Realtime";
 import Settings from "./Settings";
+import { useView } from "../contexts/ViewContext";
+import { BiInfoCircle } from "react-icons/bi";
 
 const MainView = () => {
   const [loading, setLoading] = useState(true);
   const { setUserData, currentUser } = useAuth();
   const { setLatestData } = useData(null);
+  const { toggleSidebar } = useView();
 
   const db = getFirestore(app);
 
@@ -94,7 +97,14 @@ const MainView = () => {
             <Navbar />
             {/* Main task area */}
             <div className="ml-[56px] w-full h-full flex-auto sm:ml-0">
-              <div className="h-[56px] border-b border-gray-200"></div>
+              <div className="h-[56px] border-b border-gray-200 flex items-center px-3">
+                <button
+                  className="lg:hidden ml-auto p-1 bg-gray-100 rounded-lg text-2xl text-gray-500"
+                  onClick={toggleSidebar}
+                >
+                  <BiInfoCircle />
+                </button>
+              </div>
               <Routes>
                 <Route path="/" element={<Dashboard />} />
                 <Route path="/cubesats" element={<CubeSats />} />
