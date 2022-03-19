@@ -1,20 +1,17 @@
-import React, { useState } from "react";
-import { BiInfoCircle } from "react-icons/bi";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 
 const Settings = () => {
   const navigate = useNavigate();
   const { currentUser, logout } = useAuth();
-  const [error, setError] = useState("");
 
   const signOut = async () => {
-    setError("");
     try {
       await logout();
       navigate("/login");
     } catch (err) {
-      setError("Failed to logout");
+      console.log("Failed to logout");
     }
   };
 

@@ -26,10 +26,10 @@ import { BiInfoCircle } from "react-icons/bi";
 const MainView = () => {
   const [loading, setLoading] = useState(true);
   const { setUserData, currentUser } = useAuth();
-  const { setLatestData, setAllData } = useData(null);
+  const { setLatestData, setAllData, setAllImages } = useData(null);
   const { toggleSidebar } = useView();
 
-  const db = getFirestore(app);
+  const db = getFirestore(app); // firestore database
 
   // Query snapshot for user data
   useEffect(() => {
@@ -46,42 +46,7 @@ const MainView = () => {
     };
   }, []);
 
-  // https://stackoverflow.com/questions/33036487/one-liner-to-flatten-nested-object
-  const flattenObject = (obj) => {
-    const flattened = {};
-
-    Object.keys(obj).forEach((key) => {
-      const value = obj[key];
-
-      if (
-        typeof value === "object" &&
-        value !== null &&
-        !Array.isArray(value)
-      ) {
-        Object.assign(flattened, flattenObject(value));
-      } else {
-        flattened[key] = value;
-      }
-    });
-
-    return flattened;
-  };
-
   const rtdb = getDatabase(); // Real time database
-
-  useEffect(() => {
-    setLoading(true);
-    const unsubscribe = onValue(
-      query(ref(rtdb, "data"), orderByChild("timeStamp"), limitToLast(1)),
-      (snapshot) => {
-        const data = snapshot.val();
-        setLatestData(flattenObject(data));
-      }
-    );
-    return () => {
-      unsubscribe();
-    };
-  }, []);
 
   const flattenObj = (obj) => {
     const flattened = [];
@@ -91,6 +56,22 @@ const MainView = () => {
     return flattened;
   };
 
+  // Listener for latest data
+  useEffect(() => {
+    setLoading(true);
+    const unsubscribe = onValue(
+      query(ref(rtdb, "data"), orderByChild("timeStamp"), limitToLast(1)),
+      (snapshot) => {
+        const data = snapshot.val();
+        setLatestData(...flattenObj(data));
+      }
+    );
+    return () => {
+      unsubscribe();
+    };
+  }, []);
+
+  // Listener for all data
   useEffect(() => {
     setLoading(true);
     const unsubscribe = onValue(
@@ -98,6 +79,21 @@ const MainView = () => {
       (snapshot) => {
         const data = snapshot.val();
         setAllData(flattenObj(data));
+      }
+    );
+    return () => {
+      unsubscribe();
+    };
+  }, []);
+
+  // Listener for all images
+  useEffect(() => {
+    setLoading(true);
+    const unsubscribe = onValue(
+      query(ref(rtdb, "images"), orderByChild("timeStamp"), limitToLast(10)),
+      (snapshot) => {
+        const data = snapshot.val();
+        setAllImages(flattenObj(data));
       }
     );
     return () => {
