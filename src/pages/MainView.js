@@ -75,10 +75,14 @@ const MainView = () => {
   useEffect(() => {
     setLoading(true);
     const unsubscribe = onValue(
-      query(ref(rtdb, "data"), orderByChild("timeStamp"), limitToLast(10)),
+      query(ref(rtdb, "data"), orderByChild("timeStamp"), limitToLast(48)),
       (snapshot) => {
         const data = snapshot.val();
-        setAllData(flattenObj(data));
+        setAllData(
+          flattenObj(data).sort((a, b) => {
+            return new Date(b.timeStamp) - new Date(a.timeStamp);
+          })
+        );
       }
     );
     return () => {
@@ -90,10 +94,14 @@ const MainView = () => {
   useEffect(() => {
     setLoading(true);
     const unsubscribe = onValue(
-      query(ref(rtdb, "images"), orderByChild("timeStamp"), limitToLast(10)),
+      query(ref(rtdb, "images"), orderByChild("timeStamp"), limitToLast(12)),
       (snapshot) => {
         const data = snapshot.val();
-        setAllImages(flattenObj(data));
+        setAllImages(
+          flattenObj(data).sort((a, b) => {
+            return new Date(b.timeStamp) - new Date(a.timeStamp);
+          })
+        );
       }
     );
     return () => {

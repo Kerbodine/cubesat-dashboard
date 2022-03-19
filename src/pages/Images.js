@@ -15,9 +15,9 @@ const Images = () => {
 
   return (
     <>
-      <div className="w-full h-full p-4 sm:p-8 lg:p-12">
+      <div className="w-full h-full p-4 sm:p-8 lg:p-12 overflow-y-auto">
         <h1 className="text-2xl font-semibold mb-4">Images</h1>
-        <div className="w-full grid sm:grid-cols-2 xl:grid-cols-3 gap-3">
+        <div className="w-full grid sm:grid-cols-2 xl:grid-cols-3 gap-3 mb-12">
           {allImages.map((image) => {
             return (
               <div
