@@ -1,7 +1,6 @@
 import React from "react";
 import {
   BiCategory,
-  BiCloudRain,
   BiCog,
   BiImages,
   BiMenu,
@@ -54,11 +53,6 @@ const Navbar = () => {
         <NavbarItem icon={<BiWorld />} title="CubeSats" link={"/cubesats"} />
         <NavbarItem icon={<BiServer />} title="Realtime" link={"/realtime"} />
         <NavbarItem icon={<BiImages />} title="Images" link={"/images"} />
-        <NavbarItem
-          icon={<BiCloudRain />}
-          title="Forecast"
-          link={"/forecast"}
-        />
         <NavbarItem icon={<BiCog />} title="Settings" link={"/settings"} />
         {/* Profile Button */}
         <div className="w-full mt-auto rounded-lg flex items-center">

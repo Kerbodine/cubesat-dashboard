@@ -1,20 +1,12 @@
 import { useView } from "../contexts/ViewContext";
-import { forecast } from "../config/data";
-import { weatherIcons } from "../config/icons";
-import { openWeatherIcons } from "../config/icons";
 import { BiMenu } from "react-icons/bi";
 import { useData } from "../contexts/DataContext";
-import { WiBarometer, WiHumidity, WiThermometerExterior } from "react-icons/wi";
 import WeatherCard from "./WeatherCard";
 import Loader from "./Loader";
 
 export default function Sidebar() {
   const { sidebar, toggleSidebar } = useView();
   const { location, forecastData } = useData();
-
-  const formatTime = (timestamp) => {
-    return new Date(timestamp * 1000).toLocaleDateString();
-  };
 
   console.log(forecastData);
 

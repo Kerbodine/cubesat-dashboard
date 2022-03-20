@@ -15,16 +15,7 @@ import {
   WiNightRainMix,
   WiNightSnow,
   WiNightThunderstorm,
-  WiRain,
 } from "react-icons/wi";
-
-export const weatherIcons = {
-  sunny: <WiDaySunny />,
-  cloudy: <WiDayCloudy />,
-  rain: <WiRain />,
-  overcast: <WiCloudy />,
-  thunder: <WiDayThunderstorm />,
-};
 
 export const openWeatherIcons = {
   "01d": <WiDaySunny />,

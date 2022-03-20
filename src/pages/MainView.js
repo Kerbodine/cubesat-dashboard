@@ -27,14 +27,8 @@ import GetWeather from "../components/GetWeather";
 const MainView = () => {
   const [loading, setLoading] = useState(true);
   const { setUserData, currentUser } = useAuth();
-  const {
-    setLatestData,
-    setAllData,
-    setAllImages,
-    setLocation,
-    location,
-    setForecastData,
-  } = useData(null);
+  const { setLatestData, setAllData, setAllImages, setLocation, location } =
+    useData(null);
   const { toggleSidebar } = useView();
 
   const db = getFirestore(app); // firestore database
