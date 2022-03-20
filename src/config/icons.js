@@ -1,8 +1,20 @@
 import {
+  WiCloud,
   WiCloudy,
   WiDayCloudy,
+  WiDayFog,
+  WiDayRain,
+  WiDayRainMix,
+  WiDaySnow,
   WiDaySunny,
   WiDayThunderstorm,
+  WiNightClear,
+  WiNightCloudy,
+  WiNightFog,
+  WiNightRain,
+  WiNightRainMix,
+  WiNightSnow,
+  WiNightThunderstorm,
   WiRain,
 } from "react-icons/wi";
 
@@ -12,4 +24,25 @@ export const weatherIcons = {
   rain: <WiRain />,
   overcast: <WiCloudy />,
   thunder: <WiDayThunderstorm />,
+};
+
+export const openWeatherIcons = {
+  "01d": <WiDaySunny />,
+  "01n": <WiNightClear />,
+  "02d": <WiDayCloudy />,
+  "02n": <WiNightCloudy />,
+  "03d": <WiCloud />,
+  "03n": <WiCloud />,
+  "04d": <WiCloudy />,
+  "04n": <WiCloudy />,
+  "09d": <WiDayRainMix />,
+  "09n": <WiNightRainMix />,
+  "10d": <WiDayRain />,
+  "10n": <WiNightRain />,
+  "11d": <WiDayThunderstorm />,
+  "11n": <WiNightThunderstorm />,
+  "13d": <WiDaySnow />,
+  "13n": <WiNightSnow />,
+  "50d": <WiDayFog />,
+  "50n": <WiNightFog />,
 };
