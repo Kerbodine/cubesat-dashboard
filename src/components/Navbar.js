@@ -49,7 +49,11 @@ const Navbar = () => {
         </button>
       </div>
       <div className="flex flex-col p-3 gap-1 h-[calc(100vh-56px)]">
-        <NavbarItem icon={<BiCategory />} title="Dashboard" link={"/"} />
+        <NavbarItem
+          icon={<BiCategory />}
+          title="Dashboard"
+          link={"/dashboard"}
+        />
         <NavbarItem icon={<BiWorld />} title="CubeSats" link={"/cubesats"} />
         <NavbarItem icon={<BiServer />} title="Realtime" link={"/realtime"} />
         <NavbarItem icon={<BiImages />} title="Images" link={"/images"} />

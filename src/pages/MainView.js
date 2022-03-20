@@ -122,7 +122,7 @@ const MainView = () => {
   }, []);
 
   return (
-    <div className="h-screen w-screen">
+    <div className="w-full h-full">
       {loading ? (
         <div className="grid h-full w-full place-items-center">
           <Loader />
@@ -144,7 +144,7 @@ const MainView = () => {
                 </button>
               </div>
               <Routes>
-                <Route path="/" element={<Dashboard />} />
+                <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/cubesats" element={<CubeSats />} />
                 <Route path="/realtime" element={<ProRoute />}>
                   <Route path="/realtime" element={<Realtime />} />
