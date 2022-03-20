@@ -2,9 +2,11 @@ import { useView } from "../contexts/ViewContext";
 import { forecast } from "../config/data";
 import { weatherIcons } from "../config/icons";
 import { BiMenu } from "react-icons/bi";
+import { useData } from "../contexts/DataContext";
 
 export default function Sidebar() {
   const { sidebar, toggleSidebar } = useView();
+  const { location } = useData();
 
   const formatTime = (date) => {
     const options = {
@@ -35,7 +37,10 @@ export default function Sidebar() {
           >
             <BiMenu />
           </button>
-          <p className="font-semibold">5-day Forecast</p>
+          <div>
+            <p className="font-semibold -mb-1.5">5-day Forecast</p>
+            <p className="text-gray-600">{location.country_name}</p>
+          </div>
         </div>
         <div className="space-y-3 p-3 overflow-y-auto h-[calc(100vh-56px)] w-full">
           {forecast.map((day, index) => (

@@ -10,6 +10,7 @@ export function DataProvider({ children }) {
   const [latestData, setLatestData] = useState({});
   const [allData, setAllData] = useState([]);
   const [allImages, setAllImages] = useState([]);
+  const [location, setLocation] = useState(null);
 
   const value = {
     latestData,
@@ -18,6 +19,8 @@ export function DataProvider({ children }) {
     setAllData,
     allImages,
     setAllImages,
+    location,
+    setLocation,
   };
 
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;

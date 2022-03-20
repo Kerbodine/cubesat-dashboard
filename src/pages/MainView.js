@@ -22,11 +22,13 @@ import Realtime from "./Realtime";
 import Settings from "./Settings";
 import { useView } from "../contexts/ViewContext";
 import { BiInfoCircle } from "react-icons/bi";
+import Forecast from "./Forecast";
 
 const MainView = () => {
   const [loading, setLoading] = useState(true);
   const { setUserData, currentUser } = useAuth();
-  const { setLatestData, setAllData, setAllImages } = useData(null);
+  const { setLatestData, setAllData, setAllImages, setLocation } =
+    useData(null);
   const { toggleSidebar } = useView();
 
   const db = getFirestore(app); // firestore database
@@ -109,6 +111,16 @@ const MainView = () => {
     };
   }, []);
 
+  const getLocation = async () => {
+    let response = await fetch("https://geolocation-db.com/json/");
+    let ipLocation = await response.json();
+    setLocation(ipLocation);
+  };
+
+  useEffect(() => {
+    getLocation();
+  }, []);
+
   return (
     <div className="h-screen w-screen">
       {loading ? (
@@ -139,6 +151,9 @@ const MainView = () => {
                 </Route>
                 <Route path="/images" element={<ProRoute />}>
                   <Route path="/images" element={<Images />} />
+                </Route>
+                <Route path="/forecast" element={<ProRoute />}>
+                  <Route path="/forecast" element={<Forecast />} />
                 </Route>
                 <Route path="/settings" element={<Settings />} />
               </Routes>
