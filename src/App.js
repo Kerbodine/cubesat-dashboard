@@ -9,6 +9,7 @@ import PrivateRoute from "./auth/PrivateRoute";
 import ForgotPassword from "./auth/ForgotPassword";
 import Pricing from "./pages/Pricing";
 import { DataProvider } from "./contexts/DataContext";
+import Home from "./pages/Home";
 
 const App = () => {
   return (
@@ -16,8 +17,9 @@ const App = () => {
       <ViewProvider>
         <DataProvider>
           <Router>
-            <div className="h-screen w-screen overflow-hidden">
+            <div className="h-full w-screen overflow-hidden">
               <Routes>
+                <Route path="/" element={<Home />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<Signup />} />
                 <Route path="/reset-password" element={<ForgotPassword />} />
