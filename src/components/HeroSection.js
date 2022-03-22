@@ -13,7 +13,7 @@ const navigation = [
 
 const HeroSection = () => {
   return (
-    <div className="relative w-full">
+    <div className="relative">
       <Popover as="header" className="relative">
         <div className="bg-gray-900 py-6">
           <nav
@@ -138,13 +138,16 @@ const HeroSection = () => {
                     />
                   </Link>
                   <h1 className="mt-4 text-4xl tracking-tight font-extrabold text-white sm:mt-5 sm:text-6xl lg:mt-6 xl:text-6xl">
-                    <span className="block">A better way to</span>
-                    <span className="block text-accent">ship web apps</span>
+                    <span className="block">
+                      Realtime Data <br /> & Imagery
+                    </span>
+                    <span className="block text-accent">
+                      Powered By CubeSats
+                    </span>
                   </h1>
                   <p className="mt-3 text-base text-gray-300 sm:mt-5 sm:text-xl lg:text-lg xl:text-xl">
-                    Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure
-                    qui Lorem cupidatat commodo. Elit sunt amet fugiat veniam
-                    occaecat fugiat.
+                    A highly performant, realtime, and open source API for all
+                    your needs.
                   </p>
                   <div className="mt-10 sm:mt-12">
                     <Link

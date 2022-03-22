@@ -144,7 +144,7 @@ const MainView = () => {
                 </button>
               </div>
               <Routes>
-                <Route path="/" element={<Dashboard />} />
+                <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/cubesats" element={<CubeSats />} />
                 <Route path="/realtime" element={<ProRoute />}>
                   <Route path="/realtime" element={<Realtime />} />

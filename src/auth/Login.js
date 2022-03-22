@@ -22,7 +22,7 @@ export default function Login() {
     try {
       await signInWithGoogle();
       setLoading(false);
-      navigate("/");
+      navigate("/dashboard");
     } catch (err) {
       setLoading(false);
     }
@@ -35,7 +35,7 @@ export default function Login() {
       setLoading(true);
       await login(email, password);
       setLoading(false);
-      navigate("/");
+      navigate("/dashboard");
     } catch (err) {
       switch (err.code) {
         case "auth/user-not-found":

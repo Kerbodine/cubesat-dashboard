@@ -24,7 +24,7 @@ export default function Signup() {
     try {
       await signInWithGoogle();
       setLoading(false);
-      navigate("/");
+      navigate("/dashboard");
     } catch (err) {
       setLoading(false);
     }
@@ -37,7 +37,7 @@ export default function Signup() {
       setLoading(true);
       await signup(email, password, firstName, lastName);
       setLoading(false);
-      navigate("/");
+      navigate("/dashboard");
     } catch (err) {
       switch (err.code) {
         case "auth/email-already-in-use":
