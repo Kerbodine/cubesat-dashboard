@@ -1,7 +1,7 @@
 import React, { Suspense } from "react";
 import { useData } from "../contexts/DataContext";
 import { ReactComponent as DashboardBg } from "../svg/dashboard.svg";
-import { Canvas, useThree } from "@react-three/fiber";
+import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import { useLoader } from "@react-three/fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
@@ -9,8 +9,6 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 const Dashboard = () => {
   const { latestData } = useData();
   const gltf = useLoader(GLTFLoader, "/satelite_copy.glb");
-
-  const deg2rad = (degrees) => degrees * (Math.PI / 180);
 
   return (
     <div className="w-full h-full p-4 sm:p-8 lg:p-12">
@@ -40,31 +38,26 @@ const Dashboard = () => {
           </div>
         </div>
         <div className="absolute left-3 top-3 md:left-6 md:top-6 text-sm px-2 py-1 h-12 rounded-lg bg-white/70 text-black/75">
-          {/* <span className="font-semibold">Gyro:</span>
-          <br /> {Math.round(latestData.pitch * 10) / 10} (Pitch),{" "}
-          {Math.round(latestData.roll * 10) / 10} (Roll),{" "}
-          {Math.round(latestData.yaw * 10) / 10} (Yaw)
-          <br />
-          <span className="font-semibold">Accelerometer:</span>
-          <br /> {Math.round(latestData.x * 10) / 10} (X),{" "}
-          {Math.round(latestData.y * 10) / 10} (Y),{" "}
-          {Math.round(latestData.z * 10) / 10} (Z)
-          <br /> */}
           <span className="font-semibold">Last updated: </span>
           <br />
           <span className="font-mono">
             {latestData.formattedTime && latestData.formattedTime.slice(0, -7)}
           </span>
         </div>
-        <div className="absolute top-24 hidden md:block">
+        <div className="-left-40 relative hidden lg:block">
           <Canvas
             id="cubesat"
             orthographic
-            camera={{ zoom: 20, position: [0, 0, 40] }}
-            pixelRatio={window.devicePixelRatio}
+            camera={{ zoom: 40, position: [100, 60, 80] }}
+            dpr={window.devicePixelRatio}
+            style={{
+              width: "50vw",
+              height: "384px",
+              position: "absolute",
+            }}
           >
-            <ambientLight intensity={0.5} />
-            <spotLight position={[10, 15, 10]} angle={0.3} />
+            <ambientLight intensity={0.3} />
+            <spotLight position={[-25, 25, 10]} angle={0.4} intensity={2} />
             <Suspense fallback={<p>Loading...</p>}>
               <primitive object={gltf.scene} />
             </Suspense>
