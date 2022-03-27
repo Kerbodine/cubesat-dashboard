@@ -1,9 +1,16 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { useData } from "../contexts/DataContext";
 import { ReactComponent as DashboardBg } from "../svg/dashboard.svg";
+import { Canvas, useThree } from "@react-three/fiber";
+import { OrbitControls } from "@react-three/drei";
+import { useLoader } from "@react-three/fiber";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
 const Dashboard = () => {
   const { latestData } = useData();
+  const gltf = useLoader(GLTFLoader, "/satelite_copy.glb");
+
+  const deg2rad = (degrees) => degrees * (Math.PI / 180);
 
   return (
     <div className="w-full h-full p-4 sm:p-8 lg:p-12">
@@ -48,6 +55,21 @@ const Dashboard = () => {
           <span className="font-mono">
             {latestData.formattedTime && latestData.formattedTime.slice(0, -7)}
           </span>
+        </div>
+        <div className="absolute top-24 hidden md:block">
+          <Canvas
+            id="cubesat"
+            orthographic
+            camera={{ zoom: 20, position: [0, 0, 40] }}
+            pixelRatio={window.devicePixelRatio}
+          >
+            <ambientLight intensity={0.5} />
+            <spotLight position={[10, 15, 10]} angle={0.3} />
+            <Suspense fallback={<p>Loading...</p>}>
+              <primitive object={gltf.scene} />
+            </Suspense>
+            <OrbitControls enableZoom={false} scale={0.5} />
+          </Canvas>
         </div>
         <DashboardBg className="bg-slate-800" />
       </div>

@@ -53,3 +53,8 @@
     user-select: none;
   }
 }
+
+#cubesat {
+  width: 50vw;
+  height: 50vw;
+}
