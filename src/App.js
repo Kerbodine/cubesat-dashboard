@@ -11,6 +11,7 @@ import Pricing from "./pages/Pricing";
 import { DataProvider } from "./contexts/DataContext";
 import Home from "./pages/Home";
 import PublicRoute from "./auth/PublicRoute";
+import Model from "./pages/Model";
 
 const App = () => {
   return (
@@ -23,6 +24,7 @@ const App = () => {
                 <Route path="/" element={<PublicRoute />}>
                   <Route path="/" element={<Home />} />
                 </Route>
+                <Route path="/model" element={<Model />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<Signup />} />
                 <Route path="/reset-password" element={<ForgotPassword />} />
